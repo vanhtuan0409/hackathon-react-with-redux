@@ -4,7 +4,6 @@
   left: 0;
   width 100%;
   height 100%;
-  display  none;
   overflow auto;
   background-color: rgba(black, 0.6);
 
@@ -12,13 +11,8 @@
     position relative;
   }
 
-  &.visible {
-    display block;
-  }
-
   &.up-enter {
     background-color: rgba(black, 0);
-    display: block;
     .modal {
       top: 100px;
       opacity 0;
@@ -27,7 +21,6 @@
   &.up-enter.up-enter-active {
     background-color: rgba(black, 0.6);
     transition: background-color 300ms ease;
-    display: block;
     .modal {
       top: 0;
       opacity 1;
@@ -36,7 +29,6 @@
   }
   &.up-exit {
     background-color: rgba(black, 0.6);
-    display: block;
     .modal {
       top 0;
       opacity 1;
@@ -46,7 +38,6 @@
   &.up-exit.up-exit-active {
     background-color: rgba(black, 0);
     transition: background-color 300ms ease;
-    display: block;
     .modal {
       top: 100px;
       opacity 0;
