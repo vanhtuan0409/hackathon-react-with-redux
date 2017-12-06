@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
-import LoginButton from "@components/LoginButton";
-import "./App.styl";
+import LoginButton from "@containers/LoginButton";
+import "./style.styl";
 
 class App extends PureComponent {
   render() {
