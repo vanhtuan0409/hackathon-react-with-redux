@@ -1,11 +1,13 @@
 import React, { PureComponent } from "react";
+import BottomButtomGroup from "@components/BottomButtonGroup";
+import Button from "@components/Button";
 import appIcon from "@assets/img/appicon.png";
 import tchIcon from "@assets/img/tch.jpg";
 import "./style.styl";
 
 export default class Intro extends PureComponent {
   render() {
-    const { next, previous } = this.props;
+    const { next } = this.props;
     return (
       <div className="intro-step">
         <div className="install-app">
@@ -55,6 +57,16 @@ export default class Intro extends PureComponent {
             </div>
           </div>
         </div>
+
+        <BottomButtomGroup>
+          <Button
+            primary
+            icon={<i className="fa fa-angle-right" />}
+            onClick={next}
+          >
+            Nhập thông tin đặt hàng
+          </Button>
+        </BottomButtomGroup>
       </div>
     );
   }

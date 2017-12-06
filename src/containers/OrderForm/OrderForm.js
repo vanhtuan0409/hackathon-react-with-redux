@@ -4,12 +4,13 @@ import Intro from "./steps/Intro";
 import Location from "./steps/Location";
 import SelectItem from "./steps/SelectItem";
 import Summary from "./steps/Summary";
+import "./style.styl";
 
 export default class OrderForm extends PureComponent {
   render() {
     const { currentStep } = this.props;
     return (
-      <div>
+      <div className="order-form">
         {currentStep === 1 && (
           <Intro
             previous={Actions.form.goToPreviousStep}
