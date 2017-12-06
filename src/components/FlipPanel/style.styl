@@ -1,0 +1,44 @@
+.flip-panel {
+  overflow hidden;
+  position relative;
+  height: 100%;
+
+  .flip-card {
+    position: absolute;
+    height 100%;
+    width 100%;
+    left 0;
+
+    &.slide-up-enter {
+      top 100%;
+    }
+    &.slide-up-enter.slide-up-enter-active {
+      top 0;
+      transition: top 300ms ease;
+    }
+    &.slide-up-exit {
+      z-index -1;
+      top 0;
+    }
+    &.slide-up-exit.slide-up-exit-active {
+      top -30px;
+      transition: top 300ms ease;
+    }
+
+    &.slide-down-enter {
+      top -30px;
+    }
+    &.slide-down-enter.slide-down-enter-active {
+      top 0;
+      transition: top 300ms ease;
+    }
+    &.slide-down-exit {
+      top 0;
+    }
+    &.slide-down-exit.slide-down-exit-active {
+      top 100%;
+      transition: top 300ms ease;
+    }
+
+  }
+}

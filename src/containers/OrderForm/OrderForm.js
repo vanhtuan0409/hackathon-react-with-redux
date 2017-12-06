@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Actions } from "jumpstate";
+import FlipPanel from "@components/FlipPanel";
 import Intro from "./steps/Intro";
 import CustomerInfo from "./steps/CustomerInfo";
 import Location from "./steps/Location";
@@ -37,7 +38,7 @@ const steps = [
 
 export default class OrderForm extends PureComponent {
   render() {
-    const { currentStep, data } = this.props;
+    const { currentStep, data, lastActionIsBack } = this.props;
     const step = steps[currentStep - 1];
     const { title, component: Component, validate } = step;
     const isError = validate && !validate(data);
@@ -45,13 +46,16 @@ export default class OrderForm extends PureComponent {
       currentStep === steps.length
         ? Actions.form.submit
         : Actions.form.goToNextStep;
+    const flipDirection = lastActionIsBack ? "slide-down" : "slide-up";
     return (
-      <Component
-        title={title}
-        isError={isError}
-        previous={Actions.form.goToPreviousStep}
-        next={nextFn}
-      />
+      <FlipPanel direction={flipDirection}>
+        <Component
+          title={title}
+          isError={isError}
+          previous={Actions.form.goToPreviousStep}
+          next={nextFn}
+        />
+      </FlipPanel>
     );
   }
 }
