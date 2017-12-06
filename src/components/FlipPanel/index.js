@@ -1,24 +1,18 @@
 import React, { PureComponent } from "react";
-import {
-  TransitionGroup,
-  Transition,
-  CSSTransition
-} from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./style.styl";
 
 export default class FlipPannel extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      show: false,
-      direction: "no-slide"
+      direction: "slide-up"
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedIndex !== this.props.selectedIndex) {
       this.setState({
-        show: !this.state.show,
         direction:
           nextProps.selectedIndex > this.props.selectedIndex
             ? "slide-up"
