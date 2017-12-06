@@ -38,7 +38,7 @@ const steps = [
 
 export default class OrderForm extends PureComponent {
   render() {
-    const { currentStep, data, lastActionIsBack } = this.props;
+    const { currentStep, data } = this.props;
     const step = steps[currentStep - 1];
     const { title, component: Component, validate } = step;
     const isError = validate && !validate(data);
@@ -46,9 +46,9 @@ export default class OrderForm extends PureComponent {
       currentStep === steps.length
         ? Actions.form.submit
         : Actions.form.goToNextStep;
-    const flipDirection = lastActionIsBack ? "slide-down" : "slide-up";
+
     return (
-      <FlipPanel direction={flipDirection}>
+      <FlipPanel selectedIndex={currentStep}>
         <Component
           title={title}
           isError={isError}

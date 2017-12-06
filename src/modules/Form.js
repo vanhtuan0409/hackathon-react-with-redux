@@ -4,24 +4,21 @@ import { State, Effect, Actions } from "jumpstate";
 export default State("form", {
   initial: {
     currentStep: 1,
-    data: {},
-    lastActionIsBack: false
+    data: {}
   },
 
   // Reducer for setUser action
   goToNextStep(state) {
     if (state.currentStep >= 5) return state;
     return Object.assign({}, state, {
-      currentStep: state.currentStep + 1,
-      lastActionIsBack: false
+      currentStep: state.currentStep + 1
     });
   },
 
   goToPreviousStep(state) {
     if (state.currentStep <= 1) return state;
     return Object.assign({}, state, {
-      currentStep: state.currentStep - 1,
-      lastActionIsBack: true
+      currentStep: state.currentStep - 1
     });
   },
 
