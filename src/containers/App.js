@@ -1,9 +1,15 @@
 import React, { PureComponent } from "react";
-import "./App.css";
+import LoginButton from "@components/LoginButton";
+import "./App.styl";
 
 class App extends PureComponent {
   render() {
-    return <div>App</div>;
+    return (
+      <div className="coffee-app">
+        App
+        <LoginButton />
+      </div>
+    );
   }
 }
 
