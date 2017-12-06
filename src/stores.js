@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose } from "redux";
+import { CreateJumpstateMiddleware } from "jumpstate";
 import rootReducers from "./reducers";
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [];
+  const middlewares = [CreateJumpstateMiddleware()];
 
   const enhancers = [applyMiddleware(...middlewares)];
 

@@ -1,19 +1,8 @@
-import React, { PureComponent } from "react";
-import userAvatar from "@assets/img/user_avatar.png";
-import "./style.styl";
+import { connect } from "react-redux";
+import LoginButton from "./LoginButton";
 
-export default class LoginButton extends PureComponent {
-  render() {
-    return (
-      <div className="login-button">
-        <img alt="user_avatar" src={userAvatar} />
+const mapStateToProps = state => ({
+  ...state.auth
+});
 
-        <div className="text">Đăng nhập để tích điểm</div>
-
-        <a className="hotline" href="tel:0909090909">
-          <i className="fa fa-phone" aria-hidden="true" />
-        </a>
-      </div>
-    );
-  }
-}
+export default connect(mapStateToProps)(LoginButton);
