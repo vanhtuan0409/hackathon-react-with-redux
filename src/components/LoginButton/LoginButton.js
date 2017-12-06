@@ -27,7 +27,7 @@ export default class LoginButton extends PureComponent {
         <LoginModal
           visible={modalVisibility}
           onClose={Actions.auth.closeModal}
-          onLogin={Actions.auth.closeModal}
+          onLogin={Actions.login}
         >
           asdasdasd
         </LoginModal>
