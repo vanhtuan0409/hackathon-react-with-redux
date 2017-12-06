@@ -8,12 +8,12 @@ export default State("form", {
 
   // Reducer for setUser action
   goToNextStep(state) {
-    if (state.currentStep >= 5) return state;
+    if (state.currentStep >= 4) return state;
     return Object.assign({}, state, { currentStep: state.currentStep + 1 });
   },
 
   goToPreviousStep(state) {
-    if (state.currentStep <= 0) return state;
+    if (state.currentStep <= 1) return state;
     return Object.assign({}, state, { currentStep: state.currentStep - 1 });
   }
 });
