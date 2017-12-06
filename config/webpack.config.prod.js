@@ -94,6 +94,7 @@ module.exports = {
       "@src": paths.appSrc,
       "@components": paths.appComponents,
       "@containers": paths.appContainers,
+      "@modules": paths.appModules,
       "@assets": paths.appAssets
     },
     plugins: [
