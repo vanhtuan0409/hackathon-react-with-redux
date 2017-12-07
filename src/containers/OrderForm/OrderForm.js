@@ -27,7 +27,8 @@ const steps = [
   {
     id: 4,
     title: "Chọn món",
-    component: SelectItem
+    component: SelectItem,
+    validate: data => false
   },
   {
     id: 5,
