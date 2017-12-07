@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import autobind from "class-autobind";
 import "./Bill.styl";
+import { Actions } from "jumpstate/lib";
 
 export default class Bill extends PureComponent {
   constructor(props) {
@@ -22,11 +23,21 @@ export default class Bill extends PureComponent {
                   ({size.price})
                 </div>
                 <div className="qty">
-                  <i className="fa fa-minus-square icon-minus-order" />
+                  <i
+                    className="fa fa-minus-square icon-minus-order"
+                    onClick={() =>
+                      Actions.form.removeItem({ product: item.info, size })
+                    }
+                  />
 
                   <div className="center">x {size.quantity}</div>
 
-                  <i className="fa fa-plus-square icon-plus-order" />
+                  <i
+                    className="fa fa-plus-square icon-plus-order"
+                    onClick={() =>
+                      Actions.form.addItem({ product: item.info, size })
+                    }
+                  />
                 </div>
                 <div className="total">{size.quantity * size.price}</div>
               </div>
