@@ -8,7 +8,7 @@ import "./style.styl";
 
 export default class Location extends PureComponent {
   render() {
-    const { title, next, previous } = this.props;
+    const { title, next, previous, data } = this.props;
     return (
       <StepLayout
         className="location-step"
@@ -19,14 +19,41 @@ export default class Location extends PureComponent {
         <div className="form-panel">
           <div className="form">
             <div className="form-group">
-              <input className="form-control" />
+              <input
+                className="form-control"
+                value={get(data, "location.address", "")}
+                onChange={event =>
+                  Actions.form.setFormData({
+                    name: "location.address",
+                    data: event.target.value
+                  })
+                }
+              />
             </div>
             <div className="dual-panel">
               <div className="form-group">
-                <input className="form-control" />
+                <input
+                  className="form-control"
+                  value={get(data, "location.district", "")}
+                  onChange={event =>
+                    Actions.form.setFormData({
+                      name: "location.district",
+                      data: event.target.value
+                    })
+                  }
+                />
               </div>
               <div className="form-group">
-                <input className="form-control" />
+                <input
+                  className="form-control"
+                  value={get(data, "location.city", "")}
+                  onChange={event =>
+                    Actions.form.setFormData({
+                      name: "location.city",
+                      data: event.target.value
+                    })
+                  }
+                />
               </div>
             </div>
           </div>
