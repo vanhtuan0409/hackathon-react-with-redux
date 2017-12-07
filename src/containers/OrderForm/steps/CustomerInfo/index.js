@@ -108,7 +108,7 @@ export default class CustomerInfo extends PureComponent {
             icon={<i className="fa fa-angle-right" />}
             onClick={next}
           >
-            Nhập thông tin đặt hàng
+            Chọn vị trí giao hàng
           </Button>
         </BottomButtomGroup>
       </div>
