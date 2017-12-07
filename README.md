@@ -1,3 +1,6 @@
+**Demo**: (mobile view only)
+https://vanhtuan0409.github.io/redux-react-sample-coffee/
+
 This sample take design and idea from this real product:
 https://order.thecoffeehouse.com/m/
 
