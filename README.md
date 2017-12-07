@@ -21,8 +21,8 @@ pull-request for improvements :D
 ### Installation
 
 ```
-git clone https://github.com/vanhtuan0409/redux-react-sample-coffee.git
-cd redux-react-sample-coffee
+git clone https://github.com/vanhtuan0409/hackathon-react-with-redux.git
+cd hackathon-react-with-redux
 npm install
 npm start
 ```
