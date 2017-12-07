@@ -1,6 +1,12 @@
 import React, { PureComponent } from "react";
+import { Actions } from "jumpstate";
+import { connect } from "react-redux";
 
-export default class SelectItem extends PureComponent {
+class SelectItem extends PureComponent {
+  componentDidMount() {
+    Actions.loadProductAndCategory();
+  }
+
   render() {
     const { next, previous } = this.props;
     return (
@@ -12,3 +18,6 @@ export default class SelectItem extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = state => ({ ...state.products });
+export default connect(mapStateToProps)(SelectItem);
