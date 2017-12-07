@@ -63,7 +63,7 @@ class SelectItem extends PureComponent {
       <StepLayout
         className="items-step"
         title={title}
-        index={{ step: 2, total: 4 }}
+        index={{ step: 3, total: 4 }}
         onBack={previous}
       >
         <div className="items-step-inner">
