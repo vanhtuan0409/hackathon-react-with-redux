@@ -1,10 +1,29 @@
 import React, { PureComponent } from "react";
+import { Actions } from "jumpstate";
 import BottomButtomGroup from "@components/BottomButtonGroup";
 import Button from "@components/Button";
 import StepLayout from "../StepLayout";
 import "./style.styl";
 
 export default class Summary extends PureComponent {
+  renderCustomerInfo() {
+    const { data: { customer } } = this.props;
+    return (
+      <div className="" onClick={() => Actions.form.goToStep(2)}>
+        {customer.name} - {customer.phone}
+      </div>
+    );
+  }
+
+  renderLocation() {
+    const { data: { location } } = this.props;
+    return (
+      <div className="" onClick={() => Actions.form.goToStep(3)}>
+        {location.address}, {location.district}, {location.city}
+      </div>
+    );
+  }
+
   render() {
     const { data, next, previous } = this.props;
     return (
@@ -16,7 +35,8 @@ export default class Summary extends PureComponent {
       >
         <div className="summary-step-inner">
           <div className="header-separator" />
-          asdasd
+          {this.renderCustomerInfo()}
+          {this.renderLocation()}
         </div>
 
         <BottomButtomGroup>

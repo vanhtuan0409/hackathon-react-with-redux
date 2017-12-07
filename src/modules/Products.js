@@ -18,7 +18,12 @@ export default State("products", {
 });
 
 // Reducer for login action
-Effect("loadProductAndCategory", async () => {
+Effect("loadProductAndCategory", async (payload, getState) => {
+  const state = getState();
+  const { products: pState } = state;
+  // Dont reload if already have data
+  if (pState.groups.length > 0 && pState.products.length > 0) return;
+
   Actions.products.showLoading();
   const [products, groups] = await Promise.all([
     productApi.getProducts(),

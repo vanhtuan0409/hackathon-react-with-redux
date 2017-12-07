@@ -39,6 +39,13 @@ export default State("form", {
     });
   },
 
+  goToStep(state, step) {
+    if (step < 1 || step > 5) return state;
+    return Object.assign({}, state, {
+      currentStep: step
+    });
+  },
+
   setFormData(state, { name, data }) {
     const fullPath = `data.${name}`;
     return setIn(fullPath, data, state);
