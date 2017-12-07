@@ -1,7 +1,7 @@
 {
-  "name": "redux-react-sample-coffee",
+  "name": "hackathon-react-with-redux",
   "version": "0.1.0",
-  "homepage": "https://vanhtuan0409.github.io/redux-react-sample-coffee",
+  "homepage": "https://vanhtuan0409.github.io/hackathon-react-with-redux",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",

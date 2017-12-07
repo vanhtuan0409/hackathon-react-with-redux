@@ -1,5 +1,5 @@
 **Demo**: (mobile view only)
-https://vanhtuan0409.github.io/redux-react-sample-coffee/
+https://vanhtuan0409.github.io/hackathon-react-with-redux/
 
 This sample take design and idea from this real product:
 https://order.thecoffeehouse.com/m/
