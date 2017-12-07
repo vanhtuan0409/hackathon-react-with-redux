@@ -1,13 +1,25 @@
-import { State, Effect, Actions } from "jumpstate";
-// import authApi from "@apis/auth";
+import { State } from "jumpstate";
+import setIn from "@utils/setIn";
 
 export default State("form", {
   initial: {
     currentStep: 1,
-    data: {}
+    data: {
+      customer: {
+        name: "Lê Anh Quân",
+        phone: "09123123123",
+        email: "",
+        deliver_now: true
+      },
+      location: {
+        address: "Chung cư cao cấp Ecolife Captiol, Tố Hữu, Trung Văn",
+        district: "Từ Liêm",
+        city: "Hà Nội"
+      },
+      items: []
+    }
   },
 
-  // Reducer for setUser action
   goToNextStep(state) {
     if (state.currentStep >= 5) return state;
     return Object.assign({}, state, {
@@ -22,14 +34,13 @@ export default State("form", {
     });
   },
 
+  setFormData(state, { name, data }) {
+    const fullPath = `data.${name}`;
+    return setIn(fullPath, data, state);
+  },
+
   submit(state) {
     alert(JSON.stringify(state.data));
     return state;
   }
 });
-
-// Reducer for login action
-// Effect("login", async () => {
-//   const user = await authApi.doLogin();
-//   Actions.auth.setUser(user);
-// });

@@ -52,6 +52,7 @@ export default class OrderForm extends PureComponent {
         <Component
           title={title}
           isError={isError}
+          data={data}
           previous={Actions.form.goToPreviousStep}
           next={nextFn}
         />

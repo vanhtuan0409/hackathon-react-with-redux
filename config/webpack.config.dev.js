@@ -92,7 +92,8 @@ module.exports = {
       "@components": paths.appComponents,
       "@containers": paths.appContainers,
       "@modules": paths.appModules,
-      "@assets": paths.appAssets
+      "@assets": paths.appAssets,
+      "@utils": paths.appUtils
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
