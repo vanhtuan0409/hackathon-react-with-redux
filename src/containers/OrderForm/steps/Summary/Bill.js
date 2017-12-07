@@ -52,7 +52,14 @@ export default class Bill extends PureComponent {
 
   render() {
     const { items } = this.props;
-    const total = 0;
+    let total = 0;
+    items.forEach(i => {
+      const sizes = Object.values(i.sizes);
+      sizes.forEach(s => {
+        total += s.price * s.quantity;
+      });
+    });
+
     return (
       <div className="bill-items">
         {items.map(this.renderItem)}
