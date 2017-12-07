@@ -3,6 +3,7 @@ import { Actions } from "jumpstate";
 import BottomButtomGroup from "@components/BottomButtonGroup";
 import Button from "@components/Button";
 import StepLayout from "../StepLayout";
+import Bill from "./Bill";
 import "./style.styl";
 
 export default class Summary extends PureComponent {
@@ -25,7 +26,7 @@ export default class Summary extends PureComponent {
   }
 
   render() {
-    const { data, next, previous } = this.props;
+    const { data: { items }, next, previous } = this.props;
     return (
       <StepLayout
         className="summary-step"
@@ -35,6 +36,7 @@ export default class Summary extends PureComponent {
       >
         <div className="summary-step-inner">
           <div className="header-separator" />
+          <Bill items={Object.values(items)} />
           {this.renderCustomerInfo()}
           {this.renderLocation()}
         </div>
