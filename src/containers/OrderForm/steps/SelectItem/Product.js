@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import autobind from "class-autobind";
+import get from "lodash/get";
 import classNames from "classnames";
 import CupSize from "@components/CupSize";
 
@@ -10,11 +11,13 @@ export default class Product extends PureComponent {
   }
 
   renderSize(size) {
-    const sizeQty = 0;
+    const { onSelectSize, selectedSize } = this.props;
+    const sizeQty = get(selectedSize, `${size.name}.quantity`, 0);
     return (
       <div
         key={size.name}
         className={classNames("size", `size-${size.name}`, { active: sizeQty })}
+        onClick={() => onSelectSize(size)}
       >
         <div className="icon">
           <CupSize size={size.name} active={sizeQty > 0} />

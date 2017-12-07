@@ -1,4 +1,5 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Component } from "react";
+import get from "lodash/get";
 import { Actions } from "jumpstate";
 import { connect } from "react-redux";
 import LoadingPanel from "@components/LoadingPanel";
@@ -9,14 +10,27 @@ import Product from "./Product";
 import StepLayout from "../StepLayout";
 import "./style.styl";
 
-class SelectItem extends PureComponent {
+class SelectItem extends Component {
   componentDidMount() {
     Actions.loadProductAndCategory();
   }
 
   renderProduct(product) {
     const { data: { items } } = this.props;
-    return <Product key={product.id} product={product} />;
+    const selectedSize = get(items, `${product.id}.sizes`, {});
+    return (
+      <Product
+        key={product.id}
+        product={product}
+        onSelectSize={size =>
+          Actions.form.addItem({
+            product,
+            size
+          })
+        }
+        selectedSize={selectedSize}
+      />
+    );
   }
 
   renderGroups() {
@@ -37,7 +51,6 @@ class SelectItem extends PureComponent {
 
   render() {
     const { title, isError, loading, next, previous } = this.props;
-
     return (
       <StepLayout
         className="items-step"

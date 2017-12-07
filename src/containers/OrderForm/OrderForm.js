@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Component } from "react";
 import { Actions } from "jumpstate";
 import FlipPanel from "@components/FlipPanel";
 import Intro from "./steps/Intro";
@@ -37,7 +37,7 @@ const steps = [
   }
 ];
 
-export default class OrderForm extends PureComponent {
+export default class OrderForm extends Component {
   render() {
     const { currentStep, data } = this.props;
     const step = steps[currentStep - 1];

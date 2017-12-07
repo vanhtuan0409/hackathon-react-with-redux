@@ -1,4 +1,5 @@
 import { State } from "jumpstate";
+import get from "lodash/get";
 import setIn from "@utils/setIn";
 
 export default State("form", {
@@ -16,7 +17,8 @@ export default State("form", {
         district: "Từ Liêm",
         city: "Hà Nội"
       },
-      items: []
+      // Projection on item count
+      items: {}
     }
   },
 
@@ -37,6 +39,33 @@ export default State("form", {
   setFormData(state, { name, data }) {
     const fullPath = `data.${name}`;
     return setIn(fullPath, data, state);
+  },
+
+  // Special action for handle add item
+  addItem(state, { product, size }) {
+    // Get previous product size count
+    const sizeCountPath = `${product.id}.sizes.${size.name}.quantity`;
+    const previousSizeCount = get(state.data.items, sizeCountPath, 0);
+
+    // Get previous product total
+    const productCountPath = `${product.id}.total`;
+    const previousTotal = get(state.data.items, productCountPath, 0);
+
+    // Set product info
+    let newItemCount = setIn(`${product.id}.info`, product, state.data.items);
+    // Set product total
+    newItemCount = setIn(productCountPath, previousTotal + 1, newItemCount);
+    // Set product size
+    newItemCount = setIn(
+      `${product.id}.sizes.${size.name}`,
+      {
+        ...size,
+        quantity: previousSizeCount + 1
+      },
+      newItemCount
+    );
+
+    return setIn("data.items", newItemCount, state);
   },
 
   submit(state) {
