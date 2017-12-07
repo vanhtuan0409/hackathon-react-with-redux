@@ -5,6 +5,7 @@ import LoadingPanel from "@components/LoadingPanel";
 import BottomButtomGroup from "@components/BottomButtonGroup";
 import Button from "@components/Button";
 import Collapsible from "@components/Collapsible";
+import Product from "./Product";
 import StepLayout from "../StepLayout";
 import "./style.styl";
 
@@ -13,14 +14,23 @@ class SelectItem extends PureComponent {
     Actions.loadProductAndCategory();
   }
 
+  renderProduct(product) {
+    const { data: { items } } = this.props;
+    return <Product key={product.id} product={product} />;
+  }
+
   renderGroups() {
-    const { groups } = this.props;
+    const { groups, products } = this.props;
     return groups.map(g => (
       <Collapsible
         key={g.group}
         title={<div className="group-title">{g.title}</div>}
       >
-        <div className="products" />
+        <div className="products">
+          {products
+            .filter(p => p.group === g.group)
+            .map(p => this.renderProduct(p))}
+        </div>
       </Collapsible>
     ));
   }
@@ -35,8 +45,10 @@ class SelectItem extends PureComponent {
         index={{ step: 2, total: 4 }}
         onBack={previous}
       >
-        {loading && <LoadingPanel />}
-        {!loading && this.renderGroups()}
+        <div className="items-step-inner">
+          {loading && <LoadingPanel />}
+          {!loading && this.renderGroups()}
+        </div>
 
         <BottomButtomGroup>
           <Button
