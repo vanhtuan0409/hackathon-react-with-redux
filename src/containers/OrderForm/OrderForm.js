@@ -1,4 +1,4 @@
-import React, { PureComponent, Component } from "react";
+import React, { PureComponent } from "react";
 import { Actions } from "jumpstate";
 import FlipPanel from "@components/FlipPanel";
 import Intro from "./steps/Intro";
@@ -28,7 +28,7 @@ const steps = [
     id: 4,
     title: "Chọn món",
     component: SelectItem,
-    validate: data => false
+    validate: data => Object.keys(data.items) > 0
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const steps = [
   }
 ];
 
-export default class OrderForm extends Component {
+export default class OrderForm extends PureComponent {
   render() {
     const { currentStep, data } = this.props;
     const step = steps[currentStep - 1];

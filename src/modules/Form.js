@@ -18,7 +18,10 @@ export default State("form", {
         city: "Hà Nội"
       },
       // Projection on item count
-      items: {}
+      items: {},
+
+      // Projection on group count
+      groupCount: {}
     }
   },
 
@@ -42,20 +45,12 @@ export default State("form", {
   },
 
   // Special action for handle add item
+  // Consider to refactor
   addItem(state, { product, size }) {
-    // Get previous product size count
+    // Calculate product/size count
     const sizeCountPath = `${product.id}.sizes.${size.name}.quantity`;
     const previousSizeCount = get(state.data.items, sizeCountPath, 0);
-
-    // Get previous product total
-    const productCountPath = `${product.id}.total`;
-    const previousTotal = get(state.data.items, productCountPath, 0);
-
-    // Set product info
     let newItemCount = setIn(`${product.id}.info`, product, state.data.items);
-    // Set product total
-    newItemCount = setIn(productCountPath, previousTotal + 1, newItemCount);
-    // Set product size
     newItemCount = setIn(
       `${product.id}.sizes.${size.name}`,
       {
@@ -65,7 +60,24 @@ export default State("form", {
       newItemCount
     );
 
-    return setIn("data.items", newItemCount, state);
+    // Calculate product total count
+    const productCountPath = `${product.id}.total`;
+    const previousTotal = get(state.data.items, productCountPath, 0);
+    newItemCount = setIn(productCountPath, previousTotal + 1, newItemCount);
+
+    // Calculate group total count
+    const previousGroupCount = get(state.data.groupCount, product.group, 0);
+    const newGroupCount = setIn(
+      product.group,
+      previousGroupCount + 1,
+      state.data.groupCount
+    );
+
+    // Craft new state
+    let newState = setIn("data.items", newItemCount, state);
+    newState = setIn("data.groupCount", newGroupCount, newState);
+
+    return newState;
   },
 
   submit(state) {

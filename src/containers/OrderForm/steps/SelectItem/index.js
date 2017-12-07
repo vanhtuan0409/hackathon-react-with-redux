@@ -1,4 +1,4 @@
-import React, { PureComponent, Component } from "react";
+import React, { PureComponent } from "react";
 import get from "lodash/get";
 import { Actions } from "jumpstate";
 import { connect } from "react-redux";
@@ -10,7 +10,7 @@ import Product from "./Product";
 import StepLayout from "../StepLayout";
 import "./style.styl";
 
-class SelectItem extends Component {
+class SelectItem extends PureComponent {
   componentDidMount() {
     Actions.loadProductAndCategory();
   }
@@ -34,19 +34,27 @@ class SelectItem extends Component {
   }
 
   renderGroups() {
-    const { groups, products } = this.props;
-    return groups.map(g => (
-      <Collapsible
-        key={g.group}
-        title={<div className="group-title">{g.title}</div>}
-      >
-        <div className="products">
-          {products
-            .filter(p => p.group === g.group)
-            .map(p => this.renderProduct(p))}
-        </div>
-      </Collapsible>
-    ));
+    const { groups, products, data: { groupCount } } = this.props;
+    return groups.map(g => {
+      const quantity = groupCount[g.group] || 0;
+      return (
+        <Collapsible
+          key={g.group}
+          title={
+            <div className="group-title">
+              {g.title}
+              {quantity > 0 && <div className="qty">{quantity}</div>}
+            </div>
+          }
+        >
+          <div className="products">
+            {products
+              .filter(p => p.group === g.group)
+              .map(p => this.renderProduct(p))}
+          </div>
+        </Collapsible>
+      );
+    });
   }
 
   render() {
